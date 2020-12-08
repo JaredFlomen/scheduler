@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/InterviewerListItem.scss";
 
 export default function InterviewerListItem() {
   return (
