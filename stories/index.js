@@ -22,7 +22,7 @@ storiesOf("Button", module)
     </Button>
   ));
 
-  storiesOf("DayListItem", module)
+storiesOf("DayListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
   })
@@ -51,7 +51,7 @@ storiesOf("Button", module)
     },
   ];
   
-  storiesOf("DayList", module)
+storiesOf("DayList", module)
     .addParameters({
       backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
     })
@@ -62,7 +62,7 @@ storiesOf("Button", module)
       <DayList days={days} day={"Tuesday"} setDay={action("setDay")} />
     ));
 
-    const interviewer = {
+const interviewer = {
   id: 1,
   name: "Sylvia Palmer",
   avatar: "https://i.imgur.com/LpaY82x.png"
@@ -95,37 +95,3 @@ storiesOf("InterviewerListItem", module)
       setInterviewer={action("setInterviewer")}
     />
   ));
-
-  const interviewer = {
-    id: 1,
-    name: "Sylvia Palmer",
-    avatar: "https://i.imgur.com/LpaY82x.png"
-  };
-  
-storiesOf("InterviewerListItem", module)
-  .addParameters({
-    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-  })
-  .add("Unselected", () => (
-    <InterviewerListItem
-      id={interviewer.id}
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-    />
-  ))
-  .add("Selected", () => (
-    <InterviewerListItem
-      id={interviewer.id}
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      selected
-    />
-  ))
-  .add("Clickable", () => (
-    <InterviewerListItem
-      id={interviewer.id}
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      setInterviewer={action("setInterviewer")}
-    />
-));
