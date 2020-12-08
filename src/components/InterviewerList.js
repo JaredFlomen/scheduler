@@ -5,12 +5,12 @@ import "../styles/InterviewerList.scss";
 
 export default function InterviewerList(props) { 
   const { interviewers } = props
-  const parsedInterviewList = interviewers.map(interview => <InterviewerListItem 
-    key={interview.id}
-    name={interview.name}
-    avatar={interview.avatar}
-    selected={interview.id === props.interviewer}
-    setInterviewer={event => props.setInterviewer(interview.id)}
+  const parsedInterviewList = interviewers.map(interviewer => <InterviewerListItem 
+    key={interviewer.id}
+    name={interviewer.name}
+    avatar={interviewer.avatar}
+    selected={interviewer.id === props.interviewer}
+    setInterviewer={event => props.setInterviewer(interviewer.id)}
   />)
   return (
     <section className="interviewers">
