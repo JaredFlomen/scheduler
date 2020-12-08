@@ -9,7 +9,7 @@ import InterviewerListItem from 'components/InterviewerListItem';
 import InterviewerList from 'components/InterviewerList';
 import Appointment from 'components/Appointment/index';
 import Header from 'components/Appointment/Header';
-import Empty from 'components/Application/Empty';
+import Empty from 'components/Appointment/Empty';
 
 storiesOf("Button", module)
   .addParameters({
