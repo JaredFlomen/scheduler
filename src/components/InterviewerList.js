@@ -1,5 +1,7 @@
 import React from "react";
 import classnames from 'classnames';
+import "../styles/InterviewerList.scss";
+
 
 export default function InterviewrList() { 
   return (
