@@ -56,7 +56,7 @@ const appointments = [
     time: "3pm",
   },
   {
-    id: "last",
+    id: 5,
     time: "4pm",
     interview: {
       student: "Lindsay H",
@@ -66,6 +66,10 @@ const appointments = [
         avatar: "https://i.imgur.com/T2WwVfS.png" 
       }
     }
+  },
+  {
+    id: "last",
+    time: "5pm",
   },
 ];
 
