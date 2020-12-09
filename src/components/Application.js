@@ -67,10 +67,6 @@ const appointments = [
       }
     }
   },
-  {
-    id: "last",
-    time: "5pm",
-  }
 ];
 
 export default function Application(props) {
