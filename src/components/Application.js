@@ -4,61 +4,61 @@ import { parse } from "@babel/core";
 import DayList from 'components/DayList';
 import Appointment from 'components/Appointment';
 import "../styles/Application.scss";
-
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm",
-    interview: {
-      student: "Jared Flomen",
-      interviewer: {
-        id: 2,
-        name: "Tori Malcolm",
-        avatar: "https://i.imgur.com/Nmx0Qxo.png",
-      }
-    }
-  },
-  {
-    id: 4,
-    time: "3pm",
-  },
-  {
-    id: 5,
-    time: "4pm",
-    interview: {
-      student: "Lindsay H",
-      interviewer: {
-        id: 3, 
-        name: "Mildred Nazir", 
-        avatar: "https://i.imgur.com/T2WwVfS.png" 
-      }
-    }
-  },
-  {
-    id: "last",
-    time: "5pm",
-  },
-];
+import getAppointmentsForDay from '../Helpers/selectors'
+// const appointments = [
+//   {
+//     id: 1,
+//     time: "12pm",
+//   },
+//   {
+//     id: 2,
+//     time: "1pm",
+//     interview: {
+//       student: "Lydia Miller-Jones",
+//       interviewer: {
+//         id: 1,
+//         name: "Sylvia Palmer",
+//         avatar: "https://i.imgur.com/LpaY82x.png",
+//       }
+//     }
+//   },
+//   {
+//     id: 3,
+//     time: "2pm",
+//     interview: {
+//       student: "Jared Flomen",
+//       interviewer: {
+//         id: 2,
+//         name: "Tori Malcolm",
+//         avatar: "https://i.imgur.com/Nmx0Qxo.png",
+//       }
+//     }
+//   },
+//   {
+//     id: 4,
+//     time: "3pm",
+//   },
+//   {
+//     id: 5,
+//     time: "4pm",
+//     interview: {
+//       student: "Lindsay H",
+//       interviewer: {
+//         id: 3, 
+//         name: "Mildred Nazir", 
+//         avatar: "https://i.imgur.com/T2WwVfS.png" 
+//       }
+//     }
+//   },
+//   {
+//     id: "last",
+//     time: "5pm",
+//   },
+// ];
 
 export default function Application(props) {
 
-  const parsedAppointments = appointments.map(appointment => <Appointment key={appointment.id} {...appointment} />);
+  
 
   const [state, setState] = useState({
     day: "Monday",
@@ -66,16 +66,29 @@ export default function Application(props) {
     appointments: {}
   })
 
+  const dailyAppointments = getAppointmentsForDay(state, state.day)
+  const parsedAppointments = dailyAppointments.map(appointment => <Appointment key={appointment.id} {...appointment} />);
+
   const setDay = day => setState({ ...state, day });
 
-  const setDays = (days) => {
-    setState(prev => ({ ...prev, days }));
-  }
+  useEffect(() => {
+    Promise.all([
+      axios.get('api/days'),
+      axios.get('api/appointments'),
+    ]).then((all) => {
+      console.log(all)
+      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data}))
+    })
+  }, []);
+
+  // const setDays = (days) => {
+  //   setState(prev => ({ ...prev, days }));
+  // }
 
   //Renders days for the nav bar
-  useEffect(() => {
-    axios.get('api/days').then(response => setDays(response.data))
-  }, [])
+  // useEffect(() => {
+  //   axios.get('api/days').then(response => setDays(response.data))
+  // }, [])
   
   return (
     <main className="layout">

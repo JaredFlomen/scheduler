@@ -1,4 +1,4 @@
-export function getAppointmentsForDay(state, day) {
+export default function getAppointmentsForDay(state, day) {
   if (!state.days.length) return []
 
   const parsedDays = state.days.filter(week => week.name === day);
@@ -7,7 +7,7 @@ export function getAppointmentsForDay(state, day) {
 
   const appointmentKey = parsedDays[0].appointments
 
-  return (
-    appointmentObj = appointmentKey.map(appt => state.appointments[appt])
-  );
+  const appointmentObj = appointmentKey.map(appt => state.appointments[appt])
+
+  return appointmentObj
 }
