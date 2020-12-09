@@ -64,11 +64,7 @@ export default function Application(props) {
   const [day, setDay] = useState('Monday');
 
   useEffect(() => {
-    axios({
-      method: 'GET',
-      url: '/api/days'
-    })
-    .then(response => setDays(response.data))
+    axios.get('api/days').then(response => setDays(response.data))
   }, [])
   
   return (
