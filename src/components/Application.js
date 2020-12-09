@@ -1,26 +1,9 @@
-import React, { useState } from "react";
-import DayList from './DayList'
-import "../styles/Application.scss";
-import Appointment from 'components/Appointment';
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import { parse } from "@babel/core";
-
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
+import DayList from 'components/DayList';
+import Appointment from 'components/Appointment';
+import "../styles/Application.scss";
 
 const appointments = [
   {
@@ -74,8 +57,20 @@ const appointments = [
 ];
 
 export default function Application(props) {
+
   const parsedAppointments = appointments.map(appointment => <Appointment key={appointment.id} {...appointment} />);
+
+  const [days, setDays] = useState([]);
   const [day, setDay] = useState('Monday');
+
+  useEffect(() => {
+    axios({
+      method: 'GET',
+      url: '/api/days'
+    })
+    .then(response => setDays(response.data))
+  }, [])
+  
   return (
     <main className="layout">
       <section className="sidebar">
