@@ -45,6 +45,7 @@ const state = {
   }
 };
 
+//NOTE: I MANIUPULATED THE STATE TO MAKE THE INTERVIEWERS FUNCTION WORK, IT THEN BROKE THE APPOINTMENTS TEST -> THE APPOINTMENTS TESTS PASS WITH THE OLD DATA PROVIDED FROM COMPASS
 test("getAppointmentsForDay returns an array", () => {
   const result = getAppointmentsForDay(state, "Monday");
   expect(Array.isArray(result)).toBe(true);
