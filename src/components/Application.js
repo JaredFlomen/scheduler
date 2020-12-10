@@ -58,8 +58,6 @@ import getAppointmentsForDay from '../Helpers/selectors'
 
 export default function Application(props) {
 
-  
-
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -67,8 +65,9 @@ export default function Application(props) {
   })
 
   const dailyAppointments = getAppointmentsForDay(state, state.day)
+  console.log("HERE ", dailyAppointments)
   const parsedAppointments = dailyAppointments.map(appointment => <Appointment key={appointment.id} {...appointment} />);
-
+  console.log("LENGTH ", parsedAppointments.length)
   const setDay = day => setState({ ...state, day });
 
   useEffect(() => {
@@ -76,7 +75,7 @@ export default function Application(props) {
       axios.get('api/days'),
       axios.get('api/appointments'),
     ]).then((all) => {
-      console.log(all)
+      // console.log(all)
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data}))
     })
   }, []);
