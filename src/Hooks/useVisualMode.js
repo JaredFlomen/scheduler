@@ -9,19 +9,20 @@ export default function useVisualMode(initial) {
       history.pop()
       const expectedMode = history[history.length - 1]
       setMode(expectedMode)
-      setHistory(history)
+      setHistory([...history])
     }
     setMode(newMode)
     setHistory(previousHistory => [...previousHistory, newMode])
   }
 
   function back() {
-    if (history.length > 1) {
-      history.pop()
-      const expectedMode = history[history.length - 1]
-      setMode(expectedMode)
-      setHistory(history)
-    }
+    if (history.length < 2) {return} 
+
+    history.pop()
+    const expectedMode = history[history.length - 1]
+    setMode(expectedMode)
+    setHistory([...history])
+    
   }
   
   return { mode, transition, back }

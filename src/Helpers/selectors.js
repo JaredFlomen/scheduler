@@ -15,6 +15,23 @@ export default function getAppointmentsForDay(state, day) {
   return appointmentArray
 }
 
+export function getInterviewersForDay(state, day) {
+  if (!state.days.length) return []
+
+  //Finds the correct day in the state array
+  const parsedDays = state.days.filter(currentDay => currentDay.name === day);
+
+  if (!parsedDays.length) return [];
+
+  //An array containing numbers which correspond to IDs of interviewers
+  const interviewersKey = parsedDays[0].interviewers
+
+  //Iterating over the IDs, building an array with the interviewers data
+  const interviewerArray = interviewersKey.map(intKey => state.interviewers[intKey])
+
+  return interviewerArray
+}
+
 
 export function getInterview(state, interview) {
   if (!interview) return null;

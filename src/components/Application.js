@@ -8,6 +8,7 @@ import Appointment from 'components/Appointment';
 import "../styles/Application.scss";
 
 import getAppointmentsForDay from '../Helpers/selectors';
+import { getInterviewersForDay } from 'Helpers/selectors';
 import { getInterview } from '../Helpers/selectors';
 import useVisualMode from 'Hooks/useVisualMode';
 
@@ -30,7 +31,16 @@ export default function Application(props) {
     //An object containing interview data
     const interview = getInterview(state, appointment.interview);
 
-    return <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} />;
+    //Finds the interviewers for a given day
+    const interviewers = getInterviewersForDay(state, state.day);
+
+    return (<Appointment 
+      key={appointment.id} 
+      id={appointment.id} 
+      time={appointment.time} 
+      interview={interview} 
+      interviewers={interviewers}
+    />);
   });
 
   //Tracks when the day is changed
