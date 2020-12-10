@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { parse } from "@babel/core";
+
 import DayList from 'components/DayList';
 import Appointment from 'components/Appointment';
+
 import "../styles/Application.scss";
+
 import getAppointmentsForDay from '../Helpers/selectors';
 import { getInterview } from '../Helpers/selectors';
 
@@ -23,8 +26,9 @@ export default function Application(props) {
   //Iterates over the dailyAppointments array 
   const parsedAppointments = dailyAppointments.map(appointment => {
 
-    //Gets the interview object 
+    //An object containing interview data
     const interview = getInterview(state, appointment.interview);
+
     return <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} />;
   });
 

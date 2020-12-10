@@ -20,15 +20,15 @@ export function getInterview(state, interview) {
   if (!interview) return null;
 
   //A number that will correspond to the ID of an interivewer
-  const interviewerKey = interview.interviewer
+  const interviewerID = interview.interviewer
 
   //An object that contains information of the interviewer
-  const interviewersObject = state.interviewers[interviewerKey]
+  const interviewerObject = state.interviewers[interviewerID]
 
   //An object containing interview data (student and interviewer)
   const interviewObject = {
     student: interview.student, 
-    interviewer: interviewersObject
+    interviewer: interviewerObject
   }
   
   return interviewObject;
