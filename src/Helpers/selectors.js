@@ -2,7 +2,7 @@ export default function getAppointmentsForDay(state, day) {
   if (!state.days.length) return []
 
   //Finds the correct day in the state array
-  const parsedDays = state.days.filter(week => week.name === day);
+  const parsedDays = state.days.filter(currentDay => currentDay.name === day);
 
   if (!parsedDays.length) return [];
 

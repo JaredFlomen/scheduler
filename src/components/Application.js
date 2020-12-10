@@ -9,6 +9,7 @@ import "../styles/Application.scss";
 
 import getAppointmentsForDay from '../Helpers/selectors';
 import { getInterview } from '../Helpers/selectors';
+import useVisualMode from 'Hooks/useVisualMode';
 
 export default function Application(props) {
 
