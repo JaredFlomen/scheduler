@@ -7,61 +7,68 @@ import "../styles/Application.scss";
 import getAppointmentsForDay from '../Helpers/selectors';
 import { getInterviewersForDay } from 'Helpers/selectors';
 import { getInterview } from '../Helpers/selectors';
-// import useVisualMode from 'Hooks/useVisualMode';
+import useApplicationData from 'Hooks/useApplicationData'
 
-export default function Application() {
+export default function Application(props) {
 
-  //Grouping state in one object
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {},
-    interviewers: {},
-  })
+  const {
+    state,
+    setDay,
+    bookInterview,
+    cancelInterview
+  } = useApplicationData();
 
-  function bookInterview(id, interview) {
-      const promise = axios.put(`/api/appointments/${id}`, {
-        interview
-      })
-      .then(res => {
+  // //Grouping state in one object
+  // const [state, setState] = useState({
+  //   day: "Monday",
+  //   days: [],
+  //   appointments: {},
+  //   interviewers: {},
+  // })
 
-        const appointment = {
-          ...state.appointments[id],
-          interview: { ...interview }
-        };
-        const appointments = {
-          ...state.appointments,
-          [id]: appointment
-        };
-        setState({
-          ...state,
-          appointments
-        });
-      })
-      return promise;
-  }
+  // function bookInterview(id, interview) {
+  //     const axiosPromise = axios.put(`/api/appointments/${id}`, {
+  //       interview
+  //     })
+  //     .then(res => {
 
-  function cancelInterview(id) {
+  //       const appointment = {
+  //         ...state.appointments[id],
+  //         interview: { ...interview }
+  //       };
+  //       const appointments = {
+  //         ...state.appointments,
+  //         [id]: appointment
+  //       };
+  //       setState({
+  //         ...state,
+  //         appointments
+  //       });
+  //     })
+  //     return axiosPromise;
+  // }
 
-      const promise = axios.delete(`/api/appointments/${id}`, {
-      })
-      .then(res => {
+  // function cancelInterview(id) {
 
-        const appointment = {
-          ...state.appointments[id],
-          interview: null
-        };
-        const appointments = {
-          ...state.appointments,
-          [id]: appointment
-        };
-        setState({
-          ...state,
-          appointments
-        });
-      })
-      return promise;
-  }
+  //     const axiosPromise = axios.delete(`/api/appointments/${id}`, {
+  //     })
+  //     .then(res => {
+
+  //       const appointment = {
+  //         ...state.appointments[id],
+  //         interview: null
+  //       };
+  //       const appointments = {
+  //         ...state.appointments,
+  //         [id]: appointment
+  //       };
+  //       setState({
+  //         ...state,
+  //         appointments
+  //       });
+  //     })
+  //     return axiosPromise;
+  // }
 
   //Transforming the data from the API request returning an array of appointments for the given day
   const dailyAppointments = getAppointmentsForDay(state, state.day)
@@ -88,20 +95,20 @@ export default function Application() {
     );
   });
 
-  //Tracks when the day is changed
-  const setDay = day => setState({ ...state, day });
+  // //Tracks when the day is changed
+  // const setDay = day => setState({ ...state, day });
 
-  //Resovles many Promieses and handles them
-  useEffect(() => {
-    Promise.all([ 
-      axios.get('api/days'),
-      axios.get('api/appointments'),
-      axios.get('api/interviewers')
-    ]).then((all) => {
-      //Updates the days, appointments and interviewers request at the same time
-      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
-    })
-  }, []);
+  // //Resovles many Promieses and handles them
+  // useEffect(() => {
+  //   Promise.all([ 
+  //     axios.get('api/days'),
+  //     axios.get('api/appointments'),
+  //     axios.get('api/interviewers')
+  //   ]).then((all) => {
+  //     //Updates the days, appointments and interviewers request at the same time
+  //     setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
+  //   })
+  // }, []);
 
   return (
     <main className="layout">
