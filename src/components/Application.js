@@ -20,27 +20,53 @@ export default function Application() {
   })
 
   function bookInterview(id, interview) {
-    console.log("ID Application: ", id)
-    console.log("INTERVIEW Application: ", interview)
-      
-      axios.put(`/api/appointments/${id}`, {
+      const promise = axios.put(`/api/appointments/${id}`, {
         interview
       })
-      .then(res => console.log(res))
+      .then(res => {
+
+        const appointment = {
+          ...state.appointments[id],
+          interview: { ...interview }
+        };
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment
+        };
+        setState({
+          ...state,
+          appointments
+        });
+      
+      })
       .catch(e => console.log(e))
 
-      const appointment = {
-        ...state.appointments[id],
-        interview: { ...interview }
-      };
-      const appointments = {
-        ...state.appointments,
-        [id]: appointment
-      };
-      setState({
-        ...state,
-        appointments
-      });
+      return promise;
+  }
+
+  function cancelInterview(id) {
+
+      const promise = axios.delete(`/api/appointments/${id}`, {
+      })
+      .then(res => {
+
+        const appointment = {
+          ...state.appointments[id],
+          interview: null
+        };
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment
+        };
+        setState({
+          ...state,
+          appointments
+        });
+      
+      })
+      .catch(e => console.log(e))
+
+      return promise;
   }
 
   //Transforming the data from the API request returning an array of appointments for the given day
@@ -63,6 +89,7 @@ export default function Application() {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
