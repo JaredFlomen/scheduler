@@ -28,14 +28,14 @@ export default function Form(props) {
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
-            value={props.name || name}
+            value={name || props.name}
             onChange={event => setName(event.target.value)}
             placeholder="Please enter name"
           />
         </form>
         <InterviewerList
           interviewers={props.interviewers} 
-          interviewer={props.interviewer || interviewer}
+          interviewer={interviewer || props.interviewer}
           setInterviewer={event => setInterviewer(event)}
         />
       </section>

@@ -37,10 +37,7 @@ export default function Application() {
           ...state,
           appointments
         });
-      
       })
-      .catch(e => console.log(e))
-
       return promise;
   }
 
@@ -62,10 +59,7 @@ export default function Application() {
           ...state,
           appointments
         });
-      
       })
-      .catch(e => console.log(e))
-
       return promise;
   }
 
