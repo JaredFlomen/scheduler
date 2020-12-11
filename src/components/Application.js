@@ -22,19 +22,25 @@ export default function Application() {
   function bookInterview(id, interview) {
     console.log("ID Application: ", id)
     console.log("INTERVIEW Application: ", interview)
+      
+      axios.put(`/api/appointments/${id}`, {
+        interview
+      })
+      .then(res => console.log(res))
+      .catch(e => console.log(e))
 
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    setState({
-      ...state,
-      appointments
-    });
+      const appointment = {
+        ...state.appointments[id],
+        interview: { ...interview }
+      };
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      };
+      setState({
+        ...state,
+        appointments
+      });
   }
 
   //Transforming the data from the API request returning an array of appointments for the given day
