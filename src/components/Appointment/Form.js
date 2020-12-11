@@ -17,8 +17,6 @@ export default function Form(props) {
   }
 
   function save() {
-    console.log("NAME Form ", name)
-    console.log('INTERVIEWER Form ', interviewer)
     props.onSave(name, interviewer)
   }
 

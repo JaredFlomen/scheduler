@@ -22,6 +22,19 @@ export default function Application() {
   function bookInterview(id, interview) {
     console.log("ID Application: ", id)
     console.log("INTERVIEW Application: ", interview)
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({
+      ...state,
+      appointments
+    });
   }
 
   //Transforming the data from the API request returning an array of appointments for the given day

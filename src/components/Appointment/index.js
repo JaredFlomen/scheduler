@@ -3,7 +3,7 @@ import "styles/styles.scss";
 import Header from 'components/Appointment/Header';
 import Show from 'components/Appointment/Show';
 import Empty from 'components/Appointment/Empty';
-import Form from 'components/Appointment/Form'
+import Form from 'components/Appointment/Form';
 import useVisualMode from 'Hooks/useVisualMode';
 
 const EMPTY = "EMPTY";
@@ -21,7 +21,8 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    props.bookInterview(props.id, interview)
+    props.bookInterview(props.id, interview);
+    transition(SHOW);
   }
 
   return (
