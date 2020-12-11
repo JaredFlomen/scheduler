@@ -104,7 +104,7 @@ $appointment-height: 11rem;
 
   &:last-of-type &__add,
   &:last-of-type &__card {
-    // display: none; --> I commented this out with a mentor because it wouldn't show the last entry  
+    display: none;
   }
 
   &__actions {

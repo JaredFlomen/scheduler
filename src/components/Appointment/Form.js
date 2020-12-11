@@ -17,6 +17,8 @@ export default function Form(props) {
   }
 
   function save() {
+    console.log("NAME Form ", name)
+    console.log('INTERVIEWER Form ', interviewer)
     props.onSave(name, interviewer)
   }
 
@@ -33,7 +35,11 @@ export default function Form(props) {
             placeholder="Please enter name"
           />
         </form>
-        <InterviewerList interviewers={props.interviewers} interviewer={interviewer} setInterviewer={event => setInterviewer(event)} />
+        <InterviewerList 
+          interviewers={props.interviewers} 
+          interviewer={interviewer} 
+          setInterviewer={event => setInterviewer(event)}
+        />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
