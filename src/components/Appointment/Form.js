@@ -6,6 +6,8 @@ export default function Form(props) {
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
+  const onEditCheck = props.onEditCheck || null;
+
   function reset() {
     setName("")
     setInterviewer(null)
@@ -17,7 +19,7 @@ export default function Form(props) {
   }
 
   function save() {
-    props.onSave(name, interviewer)
+    props.onSave(name, interviewer, onEditCheck)
   }
 
   return (
@@ -28,7 +30,7 @@ export default function Form(props) {
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
-            value={name || props.name}
+            value={name}
             onChange={event => setName(event.target.value)}
             placeholder="Please enter name"
           />

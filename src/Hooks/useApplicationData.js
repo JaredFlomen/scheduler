@@ -11,17 +11,20 @@ export default function useApplicationData() {
     interviewers: {},
   })
 
-  function bookInterview(id, interview) {
+  function bookInterview(id, interview, onEditCheck) {
       const axiosPromise = axios.put(`/api/appointments/${id}`, {
         interview
       })
       .then(res => {
         
-        for (let day of [...state.days]) {
-          if (day.appointments.includes(id)) {
-            day.spots -= 1;
+        if (onEditCheck) {
+          for (let day of [...state.days]) {
+            if (day.appointments.includes(id)) {
+              day.spots -= 1;
+            }
           }
         }
+        
           
         const appointment = {
           ...state.appointments[id],

@@ -25,13 +25,13 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
-  function onSave(name, interviewer) {
+  function onSave(name, interviewer, onEditCheck) {
     const interview = {
       student: name,
       interviewer
     };
     transition(SAVE);
-    props.bookInterview(props.id, interview)
+    props.bookInterview(props.id, interview, onEditCheck)
     .then(res => transition(SHOW))
     .catch(error => transition(ERROR_SAVE, true))
   }
@@ -75,6 +75,7 @@ export default function Appointment(props) {
             interviewers={props.interviewers} 
             onCancel={() => back()}
             onSave={onSave}
+            onEditCheck={true}
           />
         )}
         {mode === EMPTY && (
