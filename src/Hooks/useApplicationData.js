@@ -17,7 +17,9 @@ export default function useApplicationData() {
       })
       .then(res => {
         
+        //Checks where the form submission comes from
         if (onEditCheck) {
+          //Updates spots remaining
           for (let day of [...state.days]) {
             if (day.appointments.includes(id)) {
               day.spots -= 1;
@@ -25,7 +27,6 @@ export default function useApplicationData() {
           }
         }
         
-          
         const appointment = {
           ...state.appointments[id],
           interview: { ...interview }
@@ -48,11 +49,13 @@ export default function useApplicationData() {
       })
       .then(res => {
 
+        //Updates spots remaining
         for (let day of [...state.days]) {
           if (day.appointments.includes(id)) {
             day.spots += 1;
           }
         }
+        
         const appointment = {
           ...state.appointments[id],
           interview: null
