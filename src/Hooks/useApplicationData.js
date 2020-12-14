@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function useApplicationData() {
@@ -11,22 +11,11 @@ export default function useApplicationData() {
     interviewers: {},
   })
 
-  function bookInterview(id, interview, onEditCheck) {
+  function bookInterview(id, interview) {
       const axiosPromise = axios.put(`/api/appointments/${id}`, {
         interview
       })
       .then(res => {
-        
-        //Checks where the form submission comes from
-        if (onEditCheck) {
-          //Updates spots remaining
-          for (let day of [...state.days]) {
-            if (day.appointments.includes(id)) {
-              day.spots -= 1;
-            }
-          }
-        }
-        
         const appointment = {
           ...state.appointments[id],
           interview: { ...interview }
@@ -40,6 +29,13 @@ export default function useApplicationData() {
           appointments
         });
       })
+      .then(() => {
+        return axios.get('api/days')
+      })
+      //Updates spots remaining
+      .then(res => {
+        setState(prev => ({...prev, days: res.data}))
+      })
       return axiosPromise;
   }
 
@@ -48,14 +44,6 @@ export default function useApplicationData() {
       const axiosPromise = axios.delete(`/api/appointments/${id}`, {
       })
       .then(res => {
-
-        //Updates spots remaining
-        for (let day of [...state.days]) {
-          if (day.appointments.includes(id)) {
-            day.spots += 1;
-          }
-        }
-        
         const appointment = {
           ...state.appointments[id],
           interview: null
@@ -68,6 +56,13 @@ export default function useApplicationData() {
           ...state,
           appointments
         });
+      })
+      .then(() => {
+        return axios.get('api/days')
+      })
+      //Updates spots remaining
+      .then(res => {
+        setState(prev => ({...prev, days: res.data}))
       })
       return axiosPromise;
   }
