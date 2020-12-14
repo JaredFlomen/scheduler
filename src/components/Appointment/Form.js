@@ -5,6 +5,7 @@ import Button from 'components/Button'
 export default function Form(props) {
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [error, setError] = useState("");
 
   const onEditCheck = props.onEditCheck || null;
 
@@ -19,6 +20,15 @@ export default function Form(props) {
   }
 
   function save() {
+    validate()
+    // props.onSave(name, interviewer, onEditCheck)
+  }
+
+  function validate() {
+    if (name === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
     props.onSave(name, interviewer, onEditCheck)
   }
 
@@ -36,6 +46,7 @@ export default function Form(props) {
             data-testid="student-name-input"
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList
           interviewers={props.interviewers}
           interviewer={interviewer || props.interviewer}
