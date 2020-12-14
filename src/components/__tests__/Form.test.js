@@ -41,7 +41,7 @@ describe("Form", () => {
     //Mock onSave button
     const onSave = jest.fn();
 
-    //Renders Form with mock function and interviewers
+    //Renders Form with mock save function and interviewers
     const { getByText, queryByText } = render(<Form interviewers={interviewers} onSave={onSave} name="Lydia Miller-Jones"/>)
 
     //Clicking the Save button
@@ -50,7 +50,7 @@ describe("Form", () => {
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
     expect(onSave).toHaveBeenCalledTimes(1);
 
-    //Added a second null as I created onEditCheck in Form which is used to calculate spots remaining
+    //Added a second null as I created onEditCheck in Form component which is used to calculate spots remaining
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null, null);
   });
 });
