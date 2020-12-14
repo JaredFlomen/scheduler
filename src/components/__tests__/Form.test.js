@@ -37,10 +37,11 @@ describe("Form", () => {
     expect(onSave).not.toHaveBeenCalled();
   });
 
+  //Note: I added if(!interviewer) in the Form component to ensure an interviewer is selected, which breaks this test -> comment out that code and the test will pass
   it("can successfully save after trying to submit an empty student name", () => {
     const onSave = jest.fn();
     const { getByText, getByPlaceholderText, queryByText } = render(
-      <Form interviewers={interviewers} onSave={onSave} />
+      <Form interviewers={interviewers} onSave={onSave} interviewer={true}/>
     );
   
     fireEvent.click(getByText("Save"));
@@ -57,7 +58,7 @@ describe("Form", () => {
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
   
     expect(onSave).toHaveBeenCalledTimes(1);
-    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null);
+    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", true);
   });
 
   it("calls onCancel and resets the input field", () => {
