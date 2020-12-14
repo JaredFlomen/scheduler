@@ -49,6 +49,8 @@ describe("Form", () => {
 
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
     expect(onSave).toHaveBeenCalledTimes(1);
+
+    //Added a second null as I created onEditCheck in Form which is used to calculate spots remaining
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null, null);
   });
 });
