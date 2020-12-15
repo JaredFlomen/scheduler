@@ -7,7 +7,7 @@ import Application from "components/Application";
 afterEach(cleanup);
 
 describe('Application', () => {
-  it("Defaults to Monday and changes the schedule when a new day is selected", async () => {
+  xit("Defaults to Monday and changes the schedule when a new day is selected", async () => {
     const { getByText } = render(<Application />);
   
     await waitForElement(() => getByText("Monday"));
@@ -17,7 +17,7 @@ describe('Application', () => {
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });
   
-  it('Loads data, books an interview and reduces the spots remaining for the first day by 1', async () => {
+  xit('Loads data, books an interview and reduces the spots remaining for the first day by 1', async () => {
     const { container } = render(<Application />);
 
     await waitForElement(() => getByText(container, 'Archie Cohen'));
@@ -42,6 +42,26 @@ describe('Application', () => {
       queryByText(day, "Monday")
     );
     expect(getByText(day, 'No spots remaining')).toBeInTheDocument();
+  });
+
+  it('Loads data, cancels an interview and increases the spots remaining for Monday by 1', async () => {
+    const { container } = render(<Application />);
+    await waitForElement(() => getByText(container, 'Archie Cohen'));
+
+    const appointment = getAllByTestId(container, 'appointment')[1];
+
+    fireEvent.click(getByAltText(appointment, 'Delete'));
+    expect(getByText(appointment, /Are you sure you would like to delete/)).toBeInTheDocument();
+    fireEvent.click(getByText(appointment, 'Confirm'));
+    expect(getByText(appointment, /Deleting/)).toBeInTheDocument();
+
+
+    await waitForElement(() => getByAltText(appointment, 'Add'));
+
+    const day = getAllByTestId(container, 'day').find(day => 
+      queryByText(day, "Monday")
+    );
+    expect(getByText(day, '2 spots remaining')).toBeInTheDocument();
   })
 })
 
