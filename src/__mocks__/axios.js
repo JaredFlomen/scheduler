@@ -52,6 +52,7 @@ const fixtures = {
     }
   }
 };
+const id = 2;
 
 export default {
   defaults: { baseURL: "" },
@@ -79,5 +80,12 @@ export default {
         data: fixtures.interviewers
       });
     }
+  }),
+
+  put: jest.fn(() => {
+    return Promise.resolve({
+      status: 204,
+      statusText: 'No Content',
+    });
   })
 }

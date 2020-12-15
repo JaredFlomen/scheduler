@@ -15,7 +15,7 @@ export default function useApplicationData() {
       const axiosPromise = axios.put(`/api/appointments/${id}`, {
         interview
       })
-      .then(res => {
+      .then(() => {
         const appointment = {
           ...state.appointments[id],
           interview: { ...interview }
@@ -30,7 +30,7 @@ export default function useApplicationData() {
         });
       })
       .then(() => {
-        return axios.get('api/days')
+        return axios.get('/api/days')
       })
       //Updates spots remaining
       .then(res => {
@@ -58,7 +58,7 @@ export default function useApplicationData() {
         });
       })
       .then(() => {
-        return axios.get('api/days')
+        return axios.get('/api/days')
       })
       //Updates spots remaining
       .then(res => {
