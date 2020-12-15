@@ -22,20 +22,20 @@ export default function Application() {
   //An array with data of the interviewers for a given day
   const interviewers = getInterviewersForDay(state, state.day);
 
-  //Iterates over the dailyAppointments array 
+  //Iterates over the dailyAppointments array
   const parsedAppointments = dailyAppointments.map(appointment => {
 
-  return (
-    <Appointment 
-      key={appointment.id}
-      id={appointment.id}
-      time={appointment.time}
-      interview={getInterview(state, appointment.interview)}
-      interviewers={interviewers}
-      bookInterview={bookInterview}
-      cancelInterview={cancelInterview}
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={getInterview(state, appointment.interview)}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />);
-    });
+  });
 
   return (
     <main className="layout">

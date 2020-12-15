@@ -32,15 +32,21 @@ export default function Appointment(props) {
     };
     transition(SAVE);
     props.bookInterview(props.id, interview)
-    .then(res => transition(SHOW))
-    .catch(error => transition(ERROR_SAVE, true))
+      .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE, true))
   }
 
-  function cancelInterview() { transition(CONFIRM) }
+  function cancelInterview() { 
+    transition(CONFIRM) 
+  }
 
-  function keepInterview() { transition(SHOW) }
+  function keepInterview() { 
+    transition(SHOW) 
+  }
 
-  function editInterview() { transition(EDIT) }
+  function editInterview() {
+    transition(EDIT)
+  }
 
   function confirmCancelInterview() {
     transition(DELETING, true)
@@ -52,15 +58,6 @@ export default function Appointment(props) {
   return (
     <article className="appointment">
       <Header time={props.time} />
-        {mode === ERROR_SAVE && (
-          <Error message="Could not save the appointment"
-            cancelInterview={keepInterview}
-          />
-        )}
-        {mode === ERROR_DELETE && (
-          <Error message="Could not delete the appointment"
-          cancelInterview={keepInterview}/>
-        )}
         {mode === EDIT && (
           <Form
             name={props.interview.student}
@@ -90,14 +87,26 @@ export default function Appointment(props) {
             editInterview={editInterview}
           />
         )}
-        {mode === SAVE && (<Status message="Saving" /> )}
-        {mode === DELETING && (<Status message="Deleting" />)}
         {mode === CONFIRM && (
-          <Confirm 
+          <Confirm
             message="Are you sure you would like to delete?" 
             cancelInterview={confirmCancelInterview}
             keepInterview={keepInterview}
           />)}
+        {mode === ERROR_SAVE && (
+          <Error
+            message="Could not save the appointment"
+            cancelInterview={keepInterview} 
+          />
+        )}
+        {mode === ERROR_DELETE && (
+          <Error
+          message="Could not delete the appointment"
+          cancelInterview={keepInterview}
+          />
+        )}
+        {mode === SAVE && (<Status message="Saving" /> )}
+        {mode === DELETING && (<Status message="Deleting" />)}
     </article>
   );
 }

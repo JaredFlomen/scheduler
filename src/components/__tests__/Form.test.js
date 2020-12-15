@@ -37,7 +37,6 @@ describe("Form", () => {
     expect(onSave).not.toHaveBeenCalled();
   });
 
-  //Note: I added if(!interviewer) in the Form component to ensure an interviewer is selected, which breaks this test -> comment out that code and the test will pass
   it("can successfully save after trying to submit an empty student name", () => {
     const onSave = jest.fn();
     const { getByText, getByPlaceholderText, queryByText } = render(
