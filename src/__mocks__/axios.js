@@ -52,7 +52,6 @@ const fixtures = {
     }
   }
 };
-const id = 2;
 
 export default {
   defaults: { baseURL: "" },
@@ -83,7 +82,7 @@ export default {
   }),
 
   put: jest.fn(() => {
-    fixtures.days[0].spots = 0;
+    fixtures.days[0].spots --;
     return Promise.resolve({
       status: 204,
       statusText: 'No Content',
