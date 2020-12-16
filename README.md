@@ -30,7 +30,7 @@ npm run storybook
 ### When creating a new interview, the user is shown a blank form
 ![Blank](https://github.com/JaredFlomen/scheduler/blob/master/docs/Blank%20Form.png?raw=true)
 
-### Hover: Edit and delete buttons become live and visible, and a solid background
+### Hover: Edit and delete buttons become live and visible & the background changes
 ![Hover](https://github.com/JaredFlomen/scheduler/blob/master/docs/Highlighted.png?raw=true)
 
 ### Edit: The user can enter a student's name and select an interviewer
