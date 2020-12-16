@@ -1,8 +1,13 @@
 describe('Should book an interview', () => {
-  it("Should book an interview", () => {
-    cy.request("GET", "/api/debug/reset")
-    cy.visit('/');
+  beforeEach(() => {
+    cy.request("GET", "/api/debug/reset");
+  
+    cy.visit("/");
+  
     cy.contains("Monday");
+   });
+
+  it("Should book an interview", () => {
     cy.get('[alt=Add]').first().click();
     cy.get('[data-testid=student-name-input]').type('Lydia Miller-Jones')
     cy.get("[alt='Sylvia Palmer']").click()
