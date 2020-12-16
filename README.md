@@ -1,4 +1,6 @@
-# Interview Scheduler
+# Interview Scheduler by Jared Flomen
+
+## Screenshots
 
 ## Setup
 
