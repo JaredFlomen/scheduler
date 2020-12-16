@@ -12,9 +12,7 @@ export default function useApplicationData() {
   })
 
   function bookInterview(id, interview) {
-      const axiosPromise = axios.put(`/api/appointments/${id}`, {
-        interview
-      })
+      const axiosPromise = axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
         const appointment = {
           ...state.appointments[id],
@@ -41,9 +39,8 @@ export default function useApplicationData() {
 
   function cancelInterview(id) {
 
-      const axiosPromise = axios.delete(`/api/appointments/${id}`, {
-      })
-      .then(res => {
+      const axiosPromise = axios.delete(`/api/appointments/${id}`)
+      .then(() => {
         const appointment = {
           ...state.appointments[id],
           interview: null
@@ -83,5 +80,4 @@ export default function useApplicationData() {
   }, []);
 
   return { state, setDay, bookInterview, cancelInterview }
-
 }
