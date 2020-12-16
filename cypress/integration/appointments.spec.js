@@ -17,8 +17,12 @@ describe('Appointments', () => {
   });
 
   it('Should edit an interview', () => {
-    cy.get('[alt=Edit]').click({force: true});
+    cy.get('[alt=Edit]').first().click({force: true});
     cy.get('[data-testid=student-name-input]').clear();
     cy.get('[data-testid=student-name-input]').type('Jared Flomen')
+    cy.get("[alt='Tori Malcolm']").click()
+    cy.contains('Save').click();
+    cy.contains('.appointment__card--show', "Jared Flomen")
+    cy.contains('.appointment__card--show', "Tori Malcolm")
   })
 })
