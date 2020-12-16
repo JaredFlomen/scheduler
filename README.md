@@ -33,10 +33,10 @@ npm run storybook
 ### On Hover: The user can edit or delete an interview
 ![Hover](https://github.com/JaredFlomen/scheduler/blob/master/docs/Highlighted.png?raw=true)
 
-### After clicking Edit: The user can edit the student name and interviewer
+### After clicking Edit: The user can enter a student's name and select an interviewer
 ![Edit](https://github.com/JaredFlomen/scheduler/blob/master/docs/Edit.png?raw=true)
 
-### After clicking Delete: The user sees a confirmation window 
+### After clicking Delete: The user sees a confirmation form 
 ![Delete](https://github.com/JaredFlomen/scheduler/blob/master/docs/Confirm%20Delete.png?raw=true)
 
 

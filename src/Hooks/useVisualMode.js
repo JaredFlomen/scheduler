@@ -14,7 +14,6 @@ export default function useVisualMode(initial) {
       //Updates the history
       setHistory([...history])
     }
-    //
     setMode(newMode)
     setHistory(previousHistory => [...previousHistory, newMode])
   }
