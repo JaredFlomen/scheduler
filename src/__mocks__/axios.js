@@ -81,19 +81,37 @@ export default {
     }
   }),
 
-  put: jest.fn(() => {
-    fixtures.days[0].spots --;
+  put: jest.fn((url) => {
+    const findID = Number(url.charAt(url.length-1))
+    const findInterview = fixtures.appointments[findID].interview
+    if (!findInterview) {
+      for (const day of fixtures.days) {
+        if(day.appointments.includes(findID)) {
+          day.spots--;
+        }
+      }
+    }
+
     return Promise.resolve({
       status: 204,
       statusText: 'No Content',
     });
   }),
 
-  delete: jest.fn(() => {
-    fixtures.days[0].spots ++;
+  delete: jest.fn((url) => {
+    const findID = Number(url.charAt(url.length-1))
+    const findInterview = fixtures.appointments[findID].interview
+    if (findInterview) {
+      for (const day of fixtures.days) {
+        if(day.appointments.includes(findID)) {
+          day.spots++;
+        }
+      }
+    }
     return Promise.resolve({
       status: 204,
       statusText: 'No Content',
+
     });
   })
 }

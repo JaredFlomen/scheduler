@@ -9,17 +9,14 @@ import Application from "components/Application";
 afterEach(cleanup);
 
 describe('Application', () => {
-  xit("Defaults to Monday and changes the schedule when a new day is selected", async () => {
+  it("Defaults to Monday and changes the schedule when a new day is selected", async () => {
     const { getByText } = render(<Application />);
-  
     await waitForElement(() => getByText("Monday"));
-  
     fireEvent.click(getByText("Tuesday"));
-  
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });
   
-  xit('Loads data, books an interview and reduces the spots remaining for the first day by 1', async () => {
+  it('Loads data, books an interview and reduces the spots remaining for the first day by 1', async () => {
     const { container } = render(<Application />);
     await waitForElement(() => getByText(container, 'Archie Cohen'));
     const appointment = getAllByTestId(container, 'appointment')[0]
