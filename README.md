@@ -34,7 +34,7 @@ npm run storybook
 ![Hover](https://github.com/JaredFlomen/scheduler/blob/master/docs/Highlighted.png?raw=true)
 
 ### After clicking Edit: The user can edit the student name and interviewer
-![Edit](hhttps://github.com/JaredFlomen/scheduler/blob/master/docs/Edit.png?raw=true)
+![Edit](https://github.com/JaredFlomen/scheduler/blob/master/docs/Edit.png?raw=true)
 
 ## After clicking Delete: The user sees a confirmation window 
 ![Delete](https://github.com/JaredFlomen/scheduler/blob/master/docs/Confirm%20Delete.png?raw=true)
