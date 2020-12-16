@@ -1,4 +1,4 @@
-describe('Should book an interview', () => {
+describe('Appointments', () => {
   beforeEach(() => {
     cy.request("GET", "/api/debug/reset");
   
@@ -7,12 +7,16 @@ describe('Should book an interview', () => {
     cy.contains("Monday");
    });
 
-  it("Should book an interview", () => {
+  xit("Should book an interview", () => {
     cy.get('[alt=Add]').first().click();
     cy.get('[data-testid=student-name-input]').type('Lydia Miller-Jones')
     cy.get("[alt='Sylvia Palmer']").click()
     cy.contains('Save').click();
     cy.contains('.appointment__card--show', "Lydia Miller-Jones")
     cy.contains('.appointment__card--show', "Sylvia Palmer")
+  });
+
+  it('Should edit an interview', () => {
+    cy.get('[alt=Edit]').click({force: true});
   })
 })
