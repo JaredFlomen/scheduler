@@ -1,7 +1,7 @@
 import React from "react";
+import "../styles/Application.scss";
 import DayList from 'components/DayList';
 import Appointment from 'components/Appointment';
-import "../styles/Application.scss";
 import getAppointmentsForDay from '../Helpers/selectors';
 import { getInterviewersForDay } from 'Helpers/selectors';
 import { getInterview } from '../Helpers/selectors';
