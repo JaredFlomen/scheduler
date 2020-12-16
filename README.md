@@ -1,7 +1,5 @@
 # Interview Scheduler by Jared Flomen
 
-## Screenshots
-
 ## Setup
 
 Install dependencies with `npm install`.
@@ -23,3 +21,9 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Screenshots
+
+
+### The Scheduler Application
+(https://github.com/JaredFlomen/scheduler/blob/master/docs/Scheduler.png?raw=true)
