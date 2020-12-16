@@ -27,7 +27,7 @@ npm run storybook
 ### The Scheduler Application
 ![The Scheduler Application](https://github.com/JaredFlomen/scheduler/blob/master/docs/Scheduler.png?raw=true)
 
-### When creating a new interview, the user sees a blank form
+### When creating a new interview, the user is shown a blank form
 ![Blank](https://github.com/JaredFlomen/scheduler/blob/master/docs/Blank%20Form.png?raw=true)
 
 ### On Hover: The user can edit or delete an interview
