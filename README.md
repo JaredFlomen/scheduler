@@ -24,5 +24,4 @@ npm run storybook
 
 ## Screenshots
 
-
-[The Scheduler Application](https://github.com/JaredFlomen/scheduler/blob/master/docs/Scheduler.png?raw=true)
+![The Scheduler Application](https://github.com/JaredFlomen/scheduler/blob/master/docs/Scheduler.png?raw=true)
