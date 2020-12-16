@@ -33,10 +33,10 @@ npm run storybook
 ### Hover: Edit and delete buttons become live and visible & the background changes
 ![Hover](https://github.com/JaredFlomen/scheduler/blob/master/docs/Highlighted.png?raw=true)
 
-### Edit: The user can enter a student's name and select an interviewer
+### Edit: The user can edit a student's name and select an interviewer
 ![Edit](https://github.com/JaredFlomen/scheduler/blob/master/docs/Edit.png?raw=true)
 
-### Delete: The user sees a confirmation form 
+### Delete: The user sees a confirmation form before the destructive action
 ![Delete](https://github.com/JaredFlomen/scheduler/blob/master/docs/Confirm%20Delete.png?raw=true)
 
 
