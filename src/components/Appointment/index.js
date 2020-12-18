@@ -96,7 +96,7 @@ export default function Appointment(props) {
         {mode === ERROR_SAVE && (
           <Error
             message="Could not save the appointment"
-            cancelInterview={keepInterview} 
+            cancelInterview={() => back()}
           />
         )}
         {mode === ERROR_DELETE && (
