@@ -11,6 +11,21 @@ export default function useApplicationData() {
     interviewers: {},
   })
 
+  //Tracks when the day is changed
+  const setDay = day => setState({ ...state, day });
+
+  //Resovles many Promieses and handles them
+  useEffect(() => {
+    Promise.all([
+      axios.get('/api/days'),
+      axios.get('/api/appointments'),
+      axios.get('/api/interviewers')
+    ]).then((all) => {
+      //Updates the days, appointments and interviewers request at the same time
+      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
+    })
+  }, []);
+
   function bookInterview(id, interview) {
       const axiosPromise = axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
@@ -63,21 +78,5 @@ export default function useApplicationData() {
       })
       return axiosPromise;
   }
-
-  //Tracks when the day is changed
-  const setDay = day => setState({ ...state, day });
-
-  //Resovles many Promieses and handles them
-  useEffect(() => {
-    Promise.all([
-      axios.get('/api/days'),
-      axios.get('/api/appointments'),
-      axios.get('/api/interviewers')
-    ]).then((all) => {
-      //Updates the days, appointments and interviewers request at the same time
-      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}))
-    })
-  }, []);
-
   return { state, setDay, bookInterview, cancelInterview }
 }
