@@ -1,4 +1,4 @@
-import { useState } from 'react'; 
+import { useState } from 'react';
 
 export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
@@ -7,26 +7,28 @@ export default function useVisualMode(initial) {
   function transition(newMode, replace = false) {
     if (replace) {
       //Removes the last item in the history arrray
-      history.pop()
-      const expectedMode = history[history.length - 1]
+      history.pop();
+      const expectedMode = history[history.length - 1];
       //Updates the mode
-      setMode(expectedMode)
+      setMode(expectedMode);
       //Updates the history
-      setHistory([...history])
+      setHistory([...history]);
     }
-    setMode(newMode)
-    setHistory(previousHistory => [...previousHistory, newMode])
+    setMode(newMode);
+    setHistory(previousHistory => [...previousHistory, newMode]);
   }
 
   function back() {
-    if (history.length < 2) {return} 
+    if (history.length < 2) {
+      return;
+    }
     //Removes the last item in the array
-    history.pop()
-    const expectedMode = history[history.length - 1]
+    history.pop();
+    const expectedMode = history[history.length - 1];
     //Updates the mode
-    setMode(expectedMode)
+    setMode(expectedMode);
     //Updates the hisotry
-    setHistory([...history])
+    setHistory([...history]);
   }
-  return { mode, transition, back }
+  return { mode, transition, back };
 }
