@@ -46,8 +46,11 @@ export default function Form(props) {
         </form>
         <section className='appointment__validation'>{error}</section>
         <InterviewerList
+          //Array of objects containing information of each interviewer
           interviewers={props.interviewers}
+          //Id of an interviewer
           interviewer={interviewer || props.interviewer}
+          //Function that accepts an interviewer id
           setInterviewer={event => setInterviewer(event)}
         />
       </section>
