@@ -19,10 +19,15 @@ const EDIT = 'EDIT';
 const ERROR_SAVE = 'ERROR_SAVE';
 const ERROR_DELETE = 'ERROR_DELETE';
 
-export default function Appointment(props) {
-  const { mode, transition, back } = useVisualMode(
-    props.interview ? SHOW : EMPTY
-  );
+export default function Appointment({
+  id,
+  time,
+  interviewers,
+  interview,
+  bookInterview,
+  cancelInterview,
+}) {
+  const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
   function onSave(name, interviewer) {
     const interview = {
@@ -30,8 +35,7 @@ export default function Appointment(props) {
       interviewer,
     };
     transition(SAVE);
-    props
-      .bookInterview(props.id, interview)
+    bookInterview(id, interview)
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
   }
@@ -50,27 +54,26 @@ export default function Appointment(props) {
 
   function confirmCancelInterview() {
     transition(DELETING, true);
-    props
-      .cancelInterview(props.id)
+    cancelInterview(id)
       .then(() => transition(EMPTY))
       .catch(error => transition(ERROR_DELETE, true));
   }
 
   return (
     <article className='appointment' data-testid='appointment'>
-      <Header time={props.time} />
+      <Header time={time} />
       {mode === EDIT && (
         <Form
-          name={props.interview.student}
-          interviewer={props.interview.interviewer.id}
-          interviewers={props.interviewers}
+          name={interview.student}
+          interviewer={interview.interviewer.id}
+          interviewers={interviewers}
           onCancel={() => back()}
           onSave={onSave}
         />
       )}
       {mode === CREATE && (
         <Form
-          interviewers={props.interviewers}
+          interviewers={interviewers}
           onCancel={() => back()}
           onSave={onSave}
         />
@@ -78,8 +81,8 @@ export default function Appointment(props) {
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
-          student={props.interview.student}
-          interviewer={props.interview.interviewer.name}
+          student={interview.student}
+          interviewer={interview.interviewer.name}
           cancelInterview={cancelInterview}
           editInterview={editInterview}
         />
