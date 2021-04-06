@@ -2,10 +2,10 @@ import React from 'react';
 import classnames from 'classnames';
 import '../styles/DayListItem.scss';
 
-export default function DayListItem(props) {
+export default function DayListItem({ name, spots, selected, setDay }) {
   const dayClass = classnames('day-list__item', {
-    'day-list__item--selected': props.selected,
-    'day-list__item--full': props.spots === 0,
+    'day-list__item--selected': selected,
+    'day-list__item--full': spots === 0,
   });
 
   const formatSpots = spots => {
@@ -15,13 +15,9 @@ export default function DayListItem(props) {
   };
 
   return (
-    <li
-      className={dayClass}
-      onClick={() => props.setDay(props.name)}
-      data-testid='day'
-    >
-      <h3>{props.name}</h3>
-      <h2>{formatSpots(props.spots)}</h2>
+    <li className={dayClass} onClick={() => setDay(name)} data-testid='day'>
+      <h3>{name}</h3>
+      <h2>{formatSpots(spots)}</h2>
     </li>
   );
 }
