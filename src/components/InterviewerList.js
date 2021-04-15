@@ -22,7 +22,7 @@ export default function InterviewerList({
       //Boolean to determine if selected or not
       selected={interviewer.id === interviewer}
       //Sets the interviewer upon selection
-      setInterviewer={event => setInterviewer(interviewer.id)}
+      setInterviewer={() => setInterviewer(interviewer.id)}
     />
   ));
 
