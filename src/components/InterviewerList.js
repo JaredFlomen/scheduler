@@ -3,9 +3,11 @@ import InterviewerListItem from './InterviewerListItem';
 import PropTypes from 'prop-types';
 import '../styles/InterviewerList.scss';
 
-export default function InterviewerList(props) {
-  const { interviewers } = props;
-
+export default function InterviewerList({
+  interviewer,
+  interviewers,
+  setInterviewer,
+}) {
   InterviewerList.propTypes = {
     interviewers: PropTypes.array.isRequired,
   };
@@ -18,9 +20,9 @@ export default function InterviewerList(props) {
       //Url to an image of the interviewer
       avatar={interviewer.avatar}
       //Boolean to determine if selected or not
-      selected={interviewer.id === props.interviewer}
+      selected={interviewer.id === interviewer}
       //Sets the interviewer upon selection
-      setInterviewer={event => props.setInterviewer(interviewer.id)}
+      setInterviewer={event => setInterviewer(interviewer.id)}
     />
   ));
 
